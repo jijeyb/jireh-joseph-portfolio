@@ -1,0 +1,27 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#090D14"/>
+  <path d="M0 112H1600M0 224H1600M0 336H1600M0 448H1600M0 560H1600M0 672H1600M0 784H1600" stroke="#253043" stroke-opacity=".65"/>
+  <path d="M160 0V900M320 0V900M480 0V900M640 0V900M800 0V900M960 0V900M1120 0V900M1280 0V900M1440 0V900" stroke="#253043" stroke-opacity=".65"/>
+  <circle cx="1345" cy="151" r="175" fill="#7B61FF" fill-opacity=".15"/>
+  <circle cx="1345" cy="151" r="110" stroke="#C8FF3E" stroke-opacity=".35"/>
+  <text x="120" y="145" fill="#A7B8D7" font-family="monospace" font-size="28" letter-spacing="8">GROQ × GPT-OSS-20B</text>
+  <text x="120" y="295" fill="#F4F1EC" font-family="Arial, sans-serif" font-size="110" font-weight="700">JIJEY</text>
+  <text x="120" y="382" fill="#C8FF3E" font-family="Arial, sans-serif" font-size="70" font-weight="700">AI PORTFOLIO ASSISTANT</text>
+  <rect x="825" y="225" width="610" height="500" fill="#0D131D" stroke="#39475C" stroke-width="2"/>
+  <rect x="825" y="225" width="610" height="82" fill="#101927" stroke="#39475C" stroke-width="2"/>
+  <circle cx="875" cy="266" r="20" fill="#C8FF3E"/>
+  <text x="913" y="275" fill="#F4F1EC" font-family="monospace" font-size="22" letter-spacing="4">JIJEY</text>
+  <text x="1305" y="275" fill="#C8FF3E" font-family="monospace" font-size="14" letter-spacing="2">ONLINE</text>
+  <rect x="864" y="348" width="390" height="86" fill="#090D14" stroke="#39475C"/>
+  <text x="890" y="383" fill="#C7D2E6" font-family="Arial, sans-serif" font-size="19">How can Jireh help my business?</text>
+  <rect x="1012" y="468" width="370" height="122" fill="#C8FF3E"/>
+  <text x="1040" y="512" fill="#090D14" font-family="Arial, sans-serif" font-size="19">With brand strategy, automation,</text>
+  <text x="1040" y="544" fill="#090D14" font-family="Arial, sans-serif" font-size="19">and practical AI tools built around</text>
+  <text x="1040" y="576" fill="#090D14" font-family="Arial, sans-serif" font-size="19">the business goal.</text>
+  <rect x="864" y="630" width="480" height="50" fill="#090D14" stroke="#39475C"/>
+  <text x="889" y="662" fill="#788AA8" font-family="monospace" font-size="15">ASK JIJEY...</text>
+  <rect x="1358" y="630" width="50" height="50" fill="#C8FF3E"/>
+  <path d="M1375 655H1394M1394 655L1387 648M1394 655L1387 662" stroke="#090D14" stroke-width="3"/>
+  <text x="120" y="645" fill="#A7B8D7" font-family="Arial, sans-serif" font-size="30">A secure, conversational guide that helps visitors</text>
+  <text x="120" y="690" fill="#A7B8D7" font-family="Arial, sans-serif" font-size="30">explore services, case studies, and project booking.</text>
+</svg>
