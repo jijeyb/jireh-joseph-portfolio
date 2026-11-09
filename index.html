@@ -253,7 +253,13 @@
           </div>
 
           <!-- data-endpoint: paste a Formspree/Web3Forms URL to send directly. Empty = opens the visitor's email app with the message filled in. -->
-          <form class="form" data-contact-form data-endpoint="" novalidate data-reveal>
+          <form class="form" data-contact-form data-endpoint="https://api.web3forms.com/submit" novalidate data-reveal>
+            <!-- Web3Forms: delivers to Jireh's inbox. The access key is public by design (it can only send to him). -->
+            <input type="hidden" name="access_key" value="a097226c-15ca-4b65-87f4-de411dbbc654" />
+            <input type="hidden" name="subject" value="New project inquiry from your portfolio" />
+            <input type="hidden" name="from_name" value="Jireh Joseph portfolio" />
+            <!-- Spam trap: bots tick it, people never see it. -->
+            <input type="checkbox" name="botcheck" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true" />
             <div class="field">
               <label for="f-name">Your name</label>
               <input id="f-name" name="name" type="text" autocomplete="name" required aria-describedby="f-name-err" />
