@@ -2,3 +2,6 @@
 Thumbs.db
 desktop.ini
 .vercel
+
+.vercel
+.env*
