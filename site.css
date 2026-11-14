@@ -326,6 +326,62 @@ button { font: inherit; color: inherit; }
   .ticker__set[aria-hidden="true"] { display: none; }
 }
 
+/* ---- Latest projects (METTLE Footwear) ----------------------------------- */
+.latest { padding-top: var(--s-9); }
+.latest__group + .latest__group { margin-top: var(--s-8); }
+.latest__label { display: flex; align-items: baseline; justify-content: space-between; gap: var(--s-4); margin-bottom: var(--s-5); padding-bottom: var(--s-3); border-bottom: 1px solid var(--line); color: var(--graphite); font-size: var(--text-label); font-weight: 500; letter-spacing: .06em; text-transform: uppercase; }
+.latest__label h3 { font: inherit; color: var(--ink); }
+.latest__label span { font-variant-numeric: tabular-nums; }
+
+/* UGC: three phone-shaped cards. */
+.ugc { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(16px, 2vw, 32px); margin: 0 auto; padding: 0; list-style: none; max-width: 1080px; }
+.ugc__card { position: relative; aspect-ratio: 9 / 16; overflow: hidden; border-radius: clamp(16px, 1.6vw, 24px); background: #E6E6E6; }
+.ugc__video { display: block; width: 100%; height: 100%; object-fit: cover; }
+.ugc__sound { position: absolute; left: 50%; bottom: var(--s-4); translate: -50% 0; min-height: 44px; padding: 0 var(--s-5); border: 0; border-radius: 999px; background: rgba(10, 10, 10, .72); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); color: #F3F3F3; font: 600 14px/1 var(--font); cursor: pointer; transition: opacity var(--dur-ui) var(--ease-out), transform var(--dur-press) var(--ease-out); }
+.ugc__sound:active { transform: scale(.96); }
+.ugc__sound:focus-visible { outline-color: #F3F3F3; }
+/* Once the sound is on, native controls take over (seek, pause, volume). */
+.ugc__card.is-live .ugc__sound { opacity: 0; pointer-events: none; }
+
+/* Statics: 4:5 grid, click to open full size. */
+.ads { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(12px, 1.6vw, 24px); margin: 0; padding: 0; list-style: none; }
+.ad { display: block; width: 100%; padding: 0; border: 0; border-radius: 12px; overflow: hidden; background: #E6E6E6; cursor: zoom-in; transition: transform 300ms var(--ease-out), box-shadow 300ms var(--ease-out); }
+.ad img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; }
+.ad:active { transform: scale(.98); }
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .ad:hover { transform: translate3d(0, -6px, 0); box-shadow: 0 18px 40px -18px rgba(10, 10, 10, .35); }
+}
+
+/* Lightbox: dark full-screen stage, ad fitted to the viewport. */
+.lightbox { width: 100vw; max-width: none; height: 100dvh; max-height: none; margin: 0; padding: 0; border: 0; background: #0A0A0A; color: #F3F3F3; overscroll-behavior: contain; opacity: 1; transition: opacity 200ms var(--ease-out), overlay 200ms allow-discrete, display 200ms allow-discrete; }
+.lightbox[open] { display: grid; grid-template-rows: auto minmax(0, 1fr); }
+@starting-style { .lightbox[open] { opacity: 0; } }
+.lightbox.is-closing { opacity: 0; }
+.lightbox::backdrop { background: rgba(10, 10, 10, .6); }
+.lightbox__bar { display: flex; align-items: center; justify-content: space-between; gap: var(--s-4); padding: var(--s-4) var(--gutter-right); }
+.lightbox__count { color: #A6A6A6; font-size: var(--text-label); font-weight: 500; letter-spacing: .06em; font-variant-numeric: tabular-nums; }
+.lightbox .icon-button { border-color: rgba(243, 243, 243, .2); color: #F3F3F3; }
+.lightbox .icon-button--close { background: #F3F3F3; border-color: #F3F3F3; color: #0A0A0A; }
+@media (hover: hover) and (pointer: fine) { .lightbox .icon-button:not(.icon-button--close):hover { background: rgba(243, 243, 243, .1); } }
+.lightbox :focus-visible { outline-color: #F3F3F3; }
+.lightbox__stage { display: grid; place-items: center; min-height: 0; margin: 0; padding: 0 var(--s-5) var(--s-5); }
+.lightbox__stage img { width: auto; height: auto; max-width: 100%; max-height: calc(100dvh - 100px); border-radius: 8px; transition: opacity 160ms var(--ease-out); }
+.lightbox__stage img.is-swapping { opacity: 0; }
+
+@media (max-width: 1023px) {
+  .ads { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 760px) {
+  .latest { padding-inline: var(--s-5); }
+  .ads { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  /* Phones: UGC becomes a swipe row so each video stays a usable size. */
+  .ugc { display: flex; gap: var(--s-4); margin-inline: calc(-1 * var(--s-5)); padding-inline: var(--s-5); overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+  .ugc::-webkit-scrollbar { display: none; }
+  .ugc__card { flex: 0 0 72%; scroll-snap-align: center; }
+  .lightbox__bar { padding-inline: var(--s-4); }
+  .lightbox__stage { padding: 0 var(--s-3) var(--s-3); }
+}
+
 /* ---- About ----------------------------------------------------------------
    Phones: a stacked page (portrait, facts, stats, then services and tools).
    Desktop: .about__pin holds the screen for the whole section. The portrait

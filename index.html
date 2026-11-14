@@ -26,7 +26,7 @@
     <link rel="preload" href="assets/fonts/poppins-500.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="assets/fonts/poppins-400.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" as="image" href="assets/jireh-portrait-cutout.webp" fetchpriority="high" />
-    <link rel="stylesheet" href="site.css?v=32" />
+    <link rel="stylesheet" href="site.css?v=33" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -147,6 +147,51 @@
               <li><img src="assets/clients/mentorpreneur.webp" alt="Mentorpreneur" loading="lazy" decoding="async" /></li>
               <li class="is-negative"><img src="assets/clients/oriole.webp" alt="Oriole" loading="lazy" decoding="async" /></li>
               <li class="is-negative"><img src="assets/clients/snapback-central.webp" alt="Snapback Central" loading="lazy" decoding="async" /></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ================= LATEST PROJECTS (METTLE Footwear) ================= -->
+      <!-- UGC videos play muted only while on screen; statics open full size in the ad lightbox (site.js). -->
+      <section class="section latest" id="latest" aria-labelledby="latest-title" data-latest>
+        <header class="section__head" data-reveal>
+          <h2 class="section__title" id="latest-title">Latest <span class="outline">projects</span></h2>
+          <p class="section__intro">METTLE Footwear: Meta static ads and UGC video for a barefoot shoe brand. Concept, art direction and design.</p>
+        </header>
+
+        <div class="latest__group">
+          <div class="latest__label" data-reveal><h3>UGC videos</h3><span>03</span></div>
+          <ul class="ugc" role="list">
+            <li class="ugc__card" data-reveal style="--reveal-delay:0ms">
+              <video class="ugc__video" src="assets/projects/mettle/ugc/ugc-1.mp4" poster="assets/projects/mettle/ugc/ugc-1-poster.webp" muted loop playsinline preload="none" aria-label="METTLE Footwear UGC video 1"></video>
+              <button type="button" class="ugc__sound" data-ugc-sound aria-pressed="false"><span>Sound on</span></button>
+            </li>
+            <li class="ugc__card" data-reveal style="--reveal-delay:90ms">
+              <video class="ugc__video" src="assets/projects/mettle/ugc/ugc-2.mp4" poster="assets/projects/mettle/ugc/ugc-2-poster.webp" muted loop playsinline preload="none" aria-label="METTLE Footwear UGC video 2"></video>
+              <button type="button" class="ugc__sound" data-ugc-sound aria-pressed="false"><span>Sound on</span></button>
+            </li>
+            <li class="ugc__card" data-reveal style="--reveal-delay:180ms">
+              <video class="ugc__video" src="assets/projects/mettle/ugc/ugc-3.mp4" poster="assets/projects/mettle/ugc/ugc-3-poster.webp" muted loop playsinline preload="none" aria-label="METTLE Footwear UGC video 3"></video>
+              <button type="button" class="ugc__sound" data-ugc-sound aria-pressed="false"><span>Sound on</span></button>
+            </li>
+          </ul>
+        </div>
+
+        <div class="latest__group">
+          <div class="latest__label" data-reveal><h3>Meta static ads</h3><span>12</span></div>
+          <ul class="ads" role="list" data-ads>
+            <li data-reveal><button type="button" class="ad" data-ad="assets/projects/mettle/ads/under-the-table.webp"><img src="assets/projects/mettle/ads/under-the-table-sm.webp" alt="Ad: Shoes you won't hide under the table. A METTLE shoe served on a dinner plate." width="600" height="750" loading="lazy" decoding="async" /></button></li>
+            <li data-reveal><button type="button" class="ad" data-ad="assets/projects/mettle/ads/run-your-hand-inside.webp"><img src="assets/projects/mettle/ads/run-your-hand-inside-sm.webp" alt="Ad: Run your hand inside. A hand slides into the shoe on a wooden floor." width="600" height="750" loading="lazy" decoding="async" /></button></li>
+            <li data-reveal><button type="button" class="ad" data-ad="assets/projects/mettle/ads/everything-stacks.webp"><img src="assets/projects/mettle/ads/everything-stacks-sm.webp" alt="Ad: Everything stacks on your feet. Wooden blocks labelled back, hips, knees, ankles on a shoe." width="600" height="750" loading="lazy" decoding="async" /></button></li>
+            <li data-reveal><button type="button" class="ad" data-ad="assets/projects/mettle/ads/more-foot-on-the-ground.webp"><img src="assets/projects/mettle/ads/more-foot-on-the-ground-sm.webp" alt="Ad: More of your foot on the ground. The sole beside a wet footprint on slate." width="600" height="750" loading="lazy" decoding="async" /></button></li>
+            <li data-reveal><button type="button" class="ad" data-ad="assets/projects/mettle/ads/big-toe-alone.webp"><img src="assets/projects/mettle/ads/big-toe-alone-sm.webp" alt="Ad: We left the big toe alone. The shoe on kraft paper with a pencil." width="600" height="750" loading="lazy" decoding="async" /></button></li>
+            <li data-reveal><button type="button" class="ad" data-ad="assets/projects/mettle/ads/toes-arent-sardines.webp"><img src="assets/projects/mettle/ads/toes-arent-sardines-sm.webp" alt="Ad: Toes aren't sardines. A tin-label headline above the shoe on dark green." width="600" height="750" loading="lazy" decoding="async" /></button></li>
+            <li data-reveal><button type="button" class="ad" data-ad="assets/projects/mettle/ads/train-your-feet-first.webp"><img src="assets/projects/mettle/ads/train-your-feet-first-sm.webp" alt="Ad: Vacation days go long. Train your feet first. An illustrated travel poster with the shoe on a road." width="600" height="750" loading="lazy" decoding="async" /></button></li>
+            <li data-reveal><button type="button" class="ad" data-ad="assets/projects/mettle/ads/wakes-up-first.webp"><img src="assets/projects/mettle/ads/wakes-up-first-sm.webp" alt="Ad: Plantar fasciitis wakes up first. An alarm clock next to the black shoe." width="600" height="750" loading="lazy" decoding="async" /></button></li>
+            <li data-reveal><button type="button" class="ad" data-ad="assets/projects/mettle/ads/arch-support-left-out.webp"><img src="assets/projects/mettle/ads/arch-support-left-out-sm.webp" alt="Ad: We left the arch support out, on purpose. An exploded view of the shoe, insole and sole." width="600" height="750" loading="lazy" decoding="async" /></button></li>
+            <li data-reveal><button type="button" class="ad" data-ad="assets/projects/mettle/ads/trace-your-foot.webp"><img src="assets/projects/mettle/ads/trace-your-foot-sm.webp" alt="Ad: Trace your foot. Now trace your shoe. A hand tracing a foot outline on paper." width="600" height="750" loading="lazy" decoding="async" /></button></li>
+            <li data-reveal><button type="button" class="ad" data-ad="assets/projects/mettle/ads/tried-everything.webp"><img src="assets/projects/mettle/ads/tried-everything-sm.webp" alt="Ad: Things I tried for my foot pain. A handwritten checklist ending in wide toe box." width="600" height="750" loading="lazy" decoding="async" /></button></li>
+            <li data-reveal><button type="button" class="ad" data-ad="assets/projects/mettle/ads/walk-without-pain.webp"><img src="assets/projects/mettle/ads/walk-without-pain-sm.webp" alt="Ad: Walk without pain with METTLE. A hand holds the shoe over a cream poster." width="600" height="750" loading="lazy" decoding="async" /></button></li>
           </ul>
         </div>
       </section>
@@ -319,8 +364,21 @@
       <div class="viewer__body" data-viewer-body></div>
     </dialog>
 
+    <!-- Ad lightbox for the Latest Projects statics. -->
+    <dialog class="lightbox" data-lightbox aria-label="Ad preview">
+      <div class="lightbox__bar">
+        <p class="lightbox__count" data-lightbox-count></p>
+        <div class="viewer__controls">
+          <button type="button" class="icon-button" data-lightbox-prev aria-label="Previous ad"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+          <button type="button" class="icon-button" data-lightbox-next aria-label="Next ad"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          <button type="button" class="icon-button icon-button--close" data-lightbox-close aria-label="Close preview"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+        </div>
+      </div>
+      <figure class="lightbox__stage"><img data-lightbox-img alt="" width="1080" height="1350" /></figure>
+    </dialog>
+
     <script src="projects-data.js?v=7" defer></script>
 
-    <script src="site.js?v=29" defer></script>
+    <script src="site.js?v=30" defer></script>
   </body>
 </html>

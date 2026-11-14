@@ -592,6 +592,110 @@ if (workGrid && scoped.length) {
   }).observe(ticker);
 })();
 
+/* ---- Latest projects: UGC videos ----------------------------------------
+   Muted previews play only while on screen (and never under reduced motion).
+   "Sound on" restarts that video with audio and native controls, and mutes the others. */
+(() => {
+  const cards = [...document.querySelectorAll('.ugc__card')];
+  if (!cards.length) return;
+  const videos = cards.map((c) => c.querySelector('video'));
+  const play = (v) => { const p = v.play(); if (p) p.catch(() => {}); };
+
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(({ target: v, isIntersecting }) => {
+        const live = v.closest('.ugc__card').classList.contains('is-live');
+        if (isIntersecting && !live && !reducedMotion.matches) play(v);
+        else if (!isIntersecting) v.pause();
+      });
+    }, { threshold: 0.4 });
+    videos.forEach((v) => io.observe(v));
+  }
+
+  cards.forEach((card, i) => {
+    const btn = card.querySelector('[data-ugc-sound]');
+    btn.addEventListener('click', () => {
+      cards.forEach((other, j) => {
+        if (j === i) return;
+        other.classList.remove('is-live');
+        videos[j].muted = true;
+        videos[j].controls = false;
+        videos[j].pause();
+      });
+      const v = videos[i];
+      card.classList.add('is-live');
+      btn.setAttribute('aria-pressed', 'true');
+      v.muted = false;
+      v.loop = false;
+      v.controls = true;
+      v.currentTime = 0;
+      play(v);
+      v.focus({ preventScroll: true });
+    });
+  });
+})();
+
+/* ---- Latest projects: ad lightbox (native <dialog>) ---------------------- */
+(() => {
+  const dialog = document.querySelector('[data-lightbox]');
+  const ads = [...document.querySelectorAll('[data-ad]')];
+  if (!dialog || !ads.length || typeof dialog.showModal !== 'function') return;
+  const img = dialog.querySelector('[data-lightbox-img]');
+  const count = dialog.querySelector('[data-lightbox-count]');
+  let index = 0;
+  let opener = null;
+
+  const show = (i) => {
+    index = (i + ads.length) % ads.length;
+    const ad = ads[index];
+    const set = () => {
+      img.src = ad.dataset.ad;
+      img.alt = ad.querySelector('img').alt;
+      count.textContent = `${String(index + 1).padStart(2, '0')} / ${String(ads.length).padStart(2, '0')}`;
+    };
+    if (!dialog.open || reducedMotion.matches) { set(); return; }
+    img.classList.add('is-swapping');
+    setTimeout(() => { set(); img.onload = () => img.classList.remove('is-swapping'); if (img.complete) img.classList.remove('is-swapping'); }, 140);
+  };
+
+  const close = () => {
+    if (!dialog.open) return;
+    dialog.classList.add('is-closing');
+    setTimeout(() => { dialog.classList.remove('is-closing'); dialog.close(); }, reducedMotion.matches ? 0 : 190);
+  };
+
+  ads.forEach((ad, i) => ad.addEventListener('click', () => {
+    opener = ad;
+    show(i);
+    dialog.showModal();
+    document.documentElement.classList.add('is-locked');
+  }));
+  dialog.querySelector('[data-lightbox-prev]').addEventListener('click', () => show(index - 1));
+  dialog.querySelector('[data-lightbox-next]').addEventListener('click', () => show(index + 1));
+  dialog.querySelector('[data-lightbox-close]').addEventListener('click', close);
+  dialog.addEventListener('cancel', (e) => { e.preventDefault(); close(); });
+  // Click on the dark stage (not the ad itself) closes.
+  dialog.addEventListener('click', (e) => { if (e.target === dialog || e.target.classList.contains('lightbox__stage')) close(); });
+  dialog.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') { e.preventDefault(); show(index - 1); }
+    if (e.key === 'ArrowRight') { e.preventDefault(); show(index + 1); }
+  });
+  dialog.addEventListener('close', () => {
+    document.documentElement.classList.remove('is-locked');
+    opener?.focus({ preventScroll: true });
+  });
+
+  // Swipe left/right on phones.
+  let x0 = null;
+  dialog.addEventListener('touchstart', (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+  dialog.addEventListener('touchend', (e) => {
+    if (x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 50) show(index + (dx < 0 ? 1 : -1));
+    x0 = null;
+  });
+})();
+
 /* ---- About: the portrait frame follows the step in view ------------------ */
 (() => {
   const frames = [...document.querySelectorAll('[data-frames] img')];
