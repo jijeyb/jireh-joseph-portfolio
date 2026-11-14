@@ -103,7 +103,19 @@ const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
     indicator.style.setProperty('--indicator-y', `${link.offsetTop - 6}px`);
   };
 
-  links.forEach((link) => link.addEventListener('click', () => place(link)));
+  // A nav click scrolls past other sections on the way; without a hold the pill
+  // would bounce through each of them. Hold the clicked link until scrolling stops.
+  let holding = false; let holdTimer;
+  const release = () => { holding = false; clearTimeout(holdTimer); sync(); };
+  const settle = () => { clearTimeout(holdTimer); holdTimer = setTimeout(release, 160); };
+  links.forEach((link) => link.addEventListener('click', () => {
+    place(link);
+    holding = true;
+    clearTimeout(holdTimer);
+    holdTimer = setTimeout(release, 2500); // safety net if no scroll happens
+    window.addEventListener('scroll', settle, { passive: true });
+  }));
+  window.addEventListener('scrollend', () => { if (holding) release(); });
   horizontal.addEventListener('change', () => place(current));
   window.addEventListener('resize', () => place(current), { passive: true });
 
@@ -113,8 +125,17 @@ const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
     .filter(Boolean);
   const byId = new Map(links.map((link) => [link.dataset.spy, link]));
   const observer = new IntersectionObserver((entries) => {
+    if (holding) return;
     entries.forEach((entry) => { if (entry.isIntersecting) place(byId.get(entry.target.id)); });
   }, { rootMargin: '-45% 0px -50% 0px' });
+  // After a held jump, pick whichever spy target sits across the middle band now.
+  const sync = () => {
+    window.removeEventListener('scroll', settle);
+    const mid = window.innerHeight * .5;
+    const hit = [...byId.keys()].map((id) => document.getElementById(id)).filter(Boolean)
+      .find((el) => { const r = el.getBoundingClientRect(); return r.top <= mid && r.bottom > mid; });
+    if (hit) place(byId.get(hit.id));
+  };
   sections.forEach((section) => observer.observe(section));
   // Lead-ins that belong to a section (the ink drop before About) light up its link too.
   document.querySelectorAll('[data-spy-for]').forEach((el) => { byId.set(el.id = el.id || `${el.dataset.spyFor}-intro`, byId.get(el.dataset.spyFor)); observer.observe(el); });
@@ -1010,41 +1031,6 @@ document.querySelectorAll('[data-copy]').forEach((button) => {
   window.addEventListener('load', refresh);
   wide.addEventListener('change', refresh);
   refresh();
-})();
-
-/* ---- About stop points: catch hard flicks -------------------------------
-   A fast fling down used to fly straight past the About stage. When the page
-   crosses one of these moments faster than about 2.5 screens per second, it
-   stops there and holds for ~0.7s, absorbing the rest of the fling. Normal
-   scrolling and scrolling up never trigger it. Desktop only.               */
-(() => {
-  const marks = [...document.querySelectorAll('.about__snap, .about__step')];
-  if (!marks.length) return;
-  const wide = window.matchMedia('(min-width: 1024px)');
-  let stops = []; let lastY = window.scrollY; let lastT = performance.now(); let holdUntil = 0; let held = null;
-  const measure = () => {
-    stops = marks.map((el) => {
-      const r = el.getBoundingClientRect();
-      // The facts marker stops at the top; a step stops with its content centred.
-      return Math.round(el.classList.contains('about__snap') ? r.top + window.scrollY : r.top + window.scrollY + el.offsetHeight / 2 - window.innerHeight / 2);
-    });
-  };
-  const jump = (y) => { document.documentElement.style.scrollBehavior = 'auto'; window.scrollTo(0, y); document.documentElement.style.scrollBehavior = ''; };
-  window.addEventListener('scroll', () => {
-    const now = performance.now(); const y = window.scrollY;
-    if (!wide.matches) { lastY = y; lastT = now; return; }
-    if (held !== null && now < holdUntil) { if (y > held + 2) jump(held); lastY = held; lastT = now; return; }
-    held = null;
-    const speed = (y - lastY) / Math.max(1, now - lastT) * 1000; // px per second, + is down
-    if (speed > window.innerHeight * 2.5) {
-      const crossed = stops.find((stop) => lastY < stop - 4 && y > stop + 4);
-      if (crossed !== undefined) { held = crossed; holdUntil = now + 700; jump(crossed); lastY = crossed; lastT = now; return; }
-    }
-    lastY = y; lastT = now;
-  }, { passive: true });
-  window.addEventListener('resize', measure, { passive: true });
-  window.addEventListener('load', measure);
-  measure();
 })();
 
 /* ---- Scroll engine: continuous parallax across the page ------------------

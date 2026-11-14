@@ -429,11 +429,11 @@ button { font: inherit; color: inherit; }
   .about__stat dt { font-size: 12px; }
   /* Scroll room for the floating stage, then the right-hand column. */
   .about__flow { position: relative; z-index: 1; margin-top: -100svh; }
-  .about__room { display: block; position: relative; height: 260svh; }
+  .about__room { display: block; position: relative; height: 170svh; }
   /* Marks the moment the facts are all on screen (a stop point for fast flicks, see site.js). */
   .about__snap { position: absolute; top: 45svh; left: 0; width: 1px; height: 1px; }
   .about__steps { margin-left: calc(var(--rail-clear) + var(--side-inset) + var(--side-w) + var(--s-9)); padding: 0 var(--gutter-right) 12vh 0; }
-  .about__step { min-height: 80vh; padding: var(--s-8) 0; }
+  .about__step { min-height: 64vh; padding: var(--s-8) 0; }
 }
 
 .services { display: grid; margin: 0; }
@@ -587,7 +587,7 @@ html.is-locked { overflow: hidden; }
 .ink + .book { border-top: 1px solid rgba(243, 243, 243, .12); }
 
 /* The stage starts on paper; the flood path turns it black. */
-.drop { --paper: #F3F3F3; --ink: #0A0A0A; position: relative; height: 290svh; background: #0A0A0A; }
+.drop { --paper: #F3F3F3; --ink: #0A0A0A; position: relative; height: 220svh; background: #0A0A0A; }
 .drop__stage { position: sticky; top: 0; height: 100svh; overflow: hidden; background: #F3F3F3; }
 .drop__svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
 .drop__ripples circle { fill: none; stroke: #0A0A0A; stroke-width: 1.5; opacity: 0; }
