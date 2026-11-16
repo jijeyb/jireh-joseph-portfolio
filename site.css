@@ -329,6 +329,13 @@ button { font: inherit; color: inherit; }
 /* ---- Latest projects (METTLE Footwear) ----------------------------------- */
 .latest { padding-top: var(--s-9); }
 .latest__group + .latest__group { margin-top: var(--s-8); }
+.latest__brand { justify-self: end; display: grid; justify-items: end; gap: var(--s-4); }
+.latest__brand .section__intro { justify-self: end; text-align: right; }
+.latest__logo { display: block; width: auto; height: clamp(44px, 4.4vw, 72px); }
+@media (max-width: 1023px) {
+  .latest__brand { justify-self: start; justify-items: start; }
+  .latest__brand .section__intro { justify-self: start; text-align: left; }
+}
 .latest__label { display: flex; align-items: baseline; justify-content: space-between; gap: var(--s-4); margin-bottom: var(--s-5); padding-bottom: var(--s-3); border-bottom: 1px solid var(--line); color: var(--graphite); font-size: var(--text-label); font-weight: 500; letter-spacing: .06em; text-transform: uppercase; }
 .latest__label h3 { font: inherit; color: var(--ink); }
 .latest__label span { font-variant-numeric: tabular-nums; }
